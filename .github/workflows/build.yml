@@ -1,0 +1,28 @@
+name: Auto Release This Project
+run-name: Auto release
+on:
+  push:
+    branches:
+      master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+          with:
+            go-version: '1.21.9'
+      - name: Create artifacts
+        run: |
+          git clone --branch=master https://github.com/asAsadwS/FastestBilibiliDownloader.git biliDL
+          cd biliDL
+          echo "make -j$(cat /proc/cpuinfo| grep \"processor\"| wc -l)"
+          go build cmd/start-concurrent-engine.go -t (aid/bvid/upid) -v (id)
+      - name: Upload
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.BILIDL_TOKEN }}
+          file: biliDL/start-concurrent-engine
+          tags: ${{ github.ref }}
+
+
