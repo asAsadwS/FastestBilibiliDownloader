@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: Create artifacts
     - uses: actions/setup-go@v5
         with:
           go-version: '1.21.9'
-    - name: Create artifacts
       run: |
         git clone --branch=master https://github.com/asAsadwS/FastestBilibiliDownloader.git biliDL
         cd biliDL
