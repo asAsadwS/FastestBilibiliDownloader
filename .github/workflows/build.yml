@@ -17,7 +17,6 @@ jobs:
       run: |
         git clone --branch=master https://github.com/asAsadwS/FastestBilibiliDownloader.git biliDL
         cd biliDL
-        echo "make -j$(cat /proc/cpuinfo| grep \"processor\"| wc -l)"
         go build cmd/start-concurrent-engine.go -t (aid/bvid/upid) -v (id)
     - name: Upload
       uses: svenstaro/upload-release-action@v2
