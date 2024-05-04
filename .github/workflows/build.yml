@@ -17,12 +17,26 @@ jobs:
       run: |
         git clone --branch=master https://github.com/asAsadwS/FastestBilibiliDownloader.git biliDL
         cd biliDL
-        go build cmd/start-concurrent-engine.go
-    - name: Upload
+        go build -o biliDL-linux-dyn cmd/start-concurrent-engine.go
+        CGO_ENABLED=0 go build --ldflags "-extldflags '-static'" -o biliDL-linux-static cmd/start-concurrent-engine.go
+        CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o biliDL-windows cmd/start-concurrent-engine.go
+    - name: Upload Lniux static program
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.BILIDL_TOKEN }}
-        file: biliDL/start-concurrent-engine
-        tags: ${{ github.ref }}
+        file: biliDL/biliDL-linux-static
+        tags: ${{ GITHUB_SHA }}
+    - name: Upload Lniux program
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.BILIDL_TOKEN }}
+        file: biliDL/biliDl-linux-dyn
+        tags: ${{ GITHUB_SHA }}
+    - name: Upload Windows
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.BILIDL_TOKEN }}
+        file: biliDL/biliDl-windows
+        tags: ${{ GITHUB_SHA }}
 
 
