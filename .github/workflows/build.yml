@@ -25,18 +25,18 @@ jobs:
       with:
         repo_token: ${{ secrets.BILIDL_TOKEN }}
         file: biliDL/biliDL-linux-static
-        tags: ${{ github.sha }}
+        tag: ${{ github.sha }}
     - name: Upload Lniux program
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.BILIDL_TOKEN }}
         file: biliDL/biliDL-linux-dyn
-        tags: ${{ github.sha }}
+        tag: ${{ github.sha }}
     - name: Upload Windows
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.BILIDL_TOKEN }}
         file: biliDL/biliDL-windows
-        tags: ${{ github.sha }}
+        tag: ${{ github.sha }}
 
 
