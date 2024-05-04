@@ -30,13 +30,13 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.BILIDL_TOKEN }}
-        file: biliDL/biliDl-linux-dyn
+        file: biliDL/biliDL-linux-dyn
         tags: ${{ github.sha }}
     - name: Upload Windows
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.BILIDL_TOKEN }}
-        file: biliDL/biliDl-windows
+        file: biliDL/biliDL-windows
         tags: ${{ github.sha }}
 
 
